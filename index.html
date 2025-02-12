@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Maya!</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ab0808;
+            color: #fff;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        h1, h2 {
+            font-family: 'Georgia', serif;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            padding: 80px 0;
+            text-align: center;
+            background-image: url("Untitled design.png");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: slideIn 2s ease-in-out;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 20px;
+            background-color: #e2d3d3;
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Slideshow */
+        /* .slideshow-container {
+            position: relative;
+            width: 100%;
+            max-width: 4000px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        } */
+        .slideshow {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            background-color: #ffebee;
+            /* background-image: url(123.webp); */
+        }
+
+        .slides {
+            display: flex;
+            width: 200%;
+            animation: slideShow 20s linear infinite;
+        }
+
+        .slides img {
+            width: 10%;
+            height: 500px;
+            /* border-radius: 10px; */
+            object-fit: cover;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .photo-gallery img {
+            width: 100%;
+            max-width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+    }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+        .close:hover {
+         color: red;
+    }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+    }
+
+
+
+        /* Countdown Timer */
+        #countdown-timer {
+            font-size: 2.5em;
+            color: #d32f2f;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #8f8b8b;
+            color: rgb(255, 252, 252);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-50px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideShow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); } /* Moves to the last image */
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header img {
+                width: 180px;
+            }
+
+            .photo-gallery img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        #music-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none; /* Initially hidden */
+            z-index: 1000;
+            color: red;
+        }
+        #popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* Initially hidden */
+            z-index: 999;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #d32f2f;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #b71c1c;
+        }
+
+    
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Happy Birthday Bujjuu kuttyyyyyyyyy❤️</h1>
+    </header>
+
+    <!-- Slideshow Section -->
+    <section>
+        <!-- <h2>Memories</h2> -->
+        <div class="slideshow">
+            <div class="slides">
+            <img src="1.jpg" alt="Memory 1">
+            <img src="2.jpg" alt="Memory 2">
+            <img src="3.jpg" alt="Memory 3">
+            <img src="4.jpg" alt="Memory 4">
+            <img src="15.png" alt="Memory 1">
+            <img src="6.jpg" alt="Memory 2">
+            <img src="7.jpg" alt="Memory 3">
+            <img src="20.png" alt="Memory 4">
+            <img src="19.png" alt="Memory 1">
+            <img src="14.jpg" alt="Memory 2">
+
+            <img src="11.jpg" alt="Memory 1">
+            <img src="13.jpg" alt="Memory 2">
+            <img src="23.jpg" alt="Memory 3">
+            <img src="21.png" alt="Memory 4">
+            <img src="22.png" alt="Memory 1">
+            <img src="16.png" alt="Memory 2">
+            <img src="17.png" alt="Memory 3">
+            <img src="10.jpg" alt="Memory 4">
+            <img src="19.png" alt="Memory 1">
+            <img src="20.png" alt="Memory 2">
+    
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <p><strong>To My Loveeeee</strong></p>
+
+<p> Omg, helloooo baby ok I just can’t believe it’s your birthday, and your turning 17, ohhhhhhh myyyyyy godddddd, okay first of all happy birthday baby, and I love you soo soo soo much baby😘. And I might not show you my love, or talk as how you want or whatever but, just know that I love you so so soooooo muchhhh. Being with your all this months wait actually years la😂, it’s been a year omg yeah being with you all this years just made my whole life better maya, it’s been one year a lot of fight, misunderstanding, clashes, loves, butterflies, and lot more and happy that your with me maya. Ik I totally agree it’s so hard for you to be with a guy like me, and happy you made it a year with me and look now😂. Yeah we are happy, some fights yeah it does happens ik but still we made it her maya😂. 
+    <br> <br> You always ask me for flashbacks, and sometime I ignore it or just say it out sometimes, but now u wanna take you with a long flashback, so here I go😂, ok where do i start, ahhhhh fine lemme start from the day I met you. Ok the first time seeing you was after one of my exam, u don’t remember but your class or someone from my class told me thr is a new girl in 11 and I was ohh who is that, and I came to see you, you where thr, I mean right near my cupboard facing my class with your hands closed, and when I came near by you just turned around and there it goes, my first look at you😂😂, to be honest my first expression was ahh not that good, but that day I didn’t know we would be in love omg😂, and now😂, and then magical, the entire of the hero comes here, Shakthi😂, that guy he just messed up,  or maybe would you have come out if you knew my name?, ahh I wish uiu came out and was like Enna?? What do you want😂, I would have ran out, ohh my god, but Those days, kinda fun uk😂.  Oiii idk if I am on a sequence but I’m just going on a flow😂 so nvm, and omg on Onam, I still have that look we had near the restroom uk😭, ik you have heard abt it a thousand times but still, you with your gorgeous green blouse omg still hitting me so hard uk😭. And even on Pongal I guess?? Yeah ig so we had cs boards and you guess had celebration, and after my practices I saw you from up thr and you where there sitting😂, and omg do you know how hard it was to see you, all there girls i was like omg what if some other girls think I am looking at then, but at a point I was like ahh idc.  Ok the main part, the Arangetram omg, never forgetting day of my life, I still remember the shock on your face when you saw me😂, maya ukw that day I came there to see you only, was just acting as if I didn’t wanted to see you, but I actually wanted to uk😂, and the way your hands and legs where omg😂, and when I told you to come eat, you didn’t even look at my eyes, you just gave a ok kinda signal😂. Omg if you let me I would just be saying stuff all night, and you would only be spending your time reading the boring text😂. Wait wait lemme just end this with one thing, tech nova😂, unexpected judge madam😂damn idk if you remember but our shoulder actually touched and even our fingers uk😂 damn uk how good all Those where, and wait how do I miss this out my farewell omg maya, that night uk how great it was😂, you and me I mean only you and me, had to watch out Yashoda and Sandeep but memories omg great la😂. Fine lemme stop it’s getting big and big 
+    <br> <br> Omg, I love you soo much maya, I love you so much baby😘♥️ 
+    Once again happy birthday maya kuttyyyyyyyyyyyyyyyy
+</p>
+
+<p>Forever yours,<br><strong>Jerush</strong></p>
+
+
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="Lovee">
+        <h2>Memory</h2>
+        <div class="photo-gallery">
+        <img src="24.jpg" alt="Memory 1" onclick="openImage(this)">
+        <img src="25.jpg" alt="Memory 2" onclick="openImage(this)">
+        <img src="26.jpg" alt="Memory 3" onclick="openImage(this)">
+        <img src="27.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="28.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="29.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="30.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="40.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="41.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="42.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="43.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="44.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="2.jpg" alt="Memory 2"  onclick="openImage(this)">
+        <img src="3.jpg" alt="Memory 3" onclick="openImage(this)">
+        <img src="4.jpg" alt="Memory 4" onclick="openImage(this)">
+        <img src="15.png" alt="Memory 1" onclick="openImage(this)">
+        <img src="6.jpg" alt="Memory 2" onclick="openImage(this)">
+        <img src="7.jpg" alt="Memory 3" onclick="openImage(this)">
+        <img src="20.png" alt="Memory 4" onclick="openImage(this)">
+        <img src="19.png" alt="Memory 1" onclick="openImage(this)">
+        <img src="14.jpg" alt="Memory 2" onclick="openImage(this)">
+        <img src="11.jpg" alt="Memory 1" onclick="openImage(this)">
+        <img src="13.jpg" alt="Memory 2" onclick="openImage(this)">
+        <img src="23.jpg" alt="Memory 3" onclick="openImage(this)">
+        <img src="21.png" alt="Memory 4" onclick="openImage(this)">
+        <img src="22.png" alt="Memory 1" onclick="openImage(this)">
+        <img src="16.png" alt="Memory 2" onclick="openImage(this)">
+        <img src="17.png" alt="Memory 3" onclick="openImage(this)">
+        <img src="10.jpg" alt="Memory 4" onclick="openImage(this)">
+        
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeImage()">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <!-- Countdown Section -->
+    <section id="countdown">
+        <h2>Happy Birthday Babyyyyy</h2>
+        <div id="countdown-timer"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ by Jeruuuu</p>
+    </footer>
+
+
+
+    <div id="popup-overlay"></div>
+    <div id="music-popup">
+        <p>Do you want to play background music?</p>
+        <button onclick="playMusic()">Yes</button>
+        <button onclick="closePopup()">No</button>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="mix_12m29s (audio-joiner.com).mp3" type="audio/mpeg">
+    </audio>
+
+   
+    
+
+    <!-- JavaScript Countdown Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let countdownDate = new Date("Feb 13, 2025 00:00:00").getTime();
+
+            let x = setInterval(function () {
+                let now = new Date().getTime();
+                let distance = countdownDate - now;
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown-timer").innerHTML =
+                    days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown-timer").innerHTML = "Happy Birthday, Maya!";
+                }
+            }, 1000);
+        });
+    </script>
+    <script>
+        function openImage(imgElement) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("fullImage");
+    
+            modal.style.display = "block";  // Show the modal
+            modalImg.src = imgElement.src;  // Set clicked image
+        }
+    
+        function closeImage() {
+            document.getElementById("imageModal").style.display = "none"; // Hide modal
+        }
+    </script>
+
+<script>
+    // Show popup when page loads
+    window.onload = function() {
+        document.getElementById("music-popup").style.display = "block";
+        document.getElementById("popup-overlay").style.display = "block";
+    };
+
+    function playMusic() {
+        document.getElementById("bg-music").play();
+        closePopup();
+    }
+
+    function closePopup() {
+        document.getElementById("music-popup").style.display = "none";
+        document.getElementById("popup-overlay").style.display = "none";
+    }
+</script>
+
+<script>
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    class Particle {
+        constructor(x, y, color, size, speedX, speedY) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.size = size;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.life = 100;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.size *= 0.98;
+            this.life--;
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function createFirework(x, y) {
+        const colors = ["#ff0000", "#ff7300", "#ffeb00", "#00ff00", "#0099ff", "#7a00ff", "#ff00ff"];
+        for (let i = 0; i < 50; i++) {
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const size = Math.random() * 5 + 2;
+            const speedX = (Math.random() - 0.5) * 8;
+            const speedY = (Math.random() - 0.5) * 8;
+            particles.push(new Particle(x, y, color, size, speedX, speedY));
+        }
+    }
+
+    function animate() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.update();
+            p.draw();
+            if (p.life <= 0 || p.size < 0.5) {
+                particles.splice(i, 1);
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function randomFireworks() {
+        setInterval(() => {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height / 2;
+            createFirework(x, y);
+        }, 1000);
+    }
+
+    animate();
+    randomFireworks();
+
+    // Resize canvas when window resizes
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+
+
+    
+
+</body>
+</html>
